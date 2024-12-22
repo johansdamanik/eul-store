@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,15 +12,89 @@ import {
   DrawerDescription,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import { Input } from "@/components/ui/input";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { HiMenuAlt4, HiOutlineX } from "react-icons/hi";
+import {
+  HiMenuAlt4,
+  HiOutlineHeart,
+  HiOutlineShoppingBag,
+  HiOutlineX,
+} from "react-icons/hi";
+import { HiMagnifyingGlass, HiOutlineUser } from "react-icons/hi2";
 
 export default function Header() {
   const pathname = usePathname();
   const isMobile = useIsMobile();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null); // Create a reference for the input element
 
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
+  const toggleSearch = () =>
+    setIsSearchOpen((prev) => {
+      if (isSearchOpen) {
+        inputRef.current?.blur();
+      }
+      return !prev;
+    });
+
+  const onOpenSearch = () => {
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 0); // Small delay to ensure the element is mounted
+  };
+
+  const LinkMenu = () => {
+    return (
+      <ul className="flex flex-col items-start gap-4 font-semibold text-gray-700 md:flex-row md:items-center">
+        <li>
+          <Link href="/man" className={getLinkClass("/man")}>
+            MAN
+          </Link>
+        </li>
+        <li>
+          <Link href="/woman" className={getLinkClass("/woman")}>
+            WOMAN
+          </Link>
+        </li>
+        <li>
+          <Link href="/accessories" className={getLinkClass("/accessories")}>
+            ACCESSORIES
+          </Link>
+        </li>
+      </ul>
+    );
+  };
+
+  const SearchMenu = () => {
+    return (
+      <Sheet onOpenChange={onOpenSearch}>
+        <SheetTrigger asChild>
+          <HiMagnifyingGlass className="cursor-pointer text-xl" />
+        </SheetTrigger>
+        <SheetContent side={"top"} className="min-h-32 rounded-b-xl">
+          <SheetClose />
+          <SheetHeader className="hidden">
+            <SheetTitle>Eul Store Search</SheetTitle>
+            <SheetDescription>Search Products</SheetDescription>
+          </SheetHeader>
+          {/* Attach the ref to the input */}
+          <Input ref={inputRef} className="" placeholder="Search" />
+        </SheetContent>
+      </Sheet>
+    );
+  };
 
   // Function to determine the class for links
   const getLinkClass = (path: string): string =>
@@ -45,26 +119,15 @@ export default function Header() {
             </Link>
 
             {/* Navigation Links */}
-            <ul className="hidden items-center gap-4 font-semibold text-gray-700 md:flex">
-              <li>
-                <Link href="/man" className={getLinkClass("/man")}>
-                  MAN
-                </Link>
-              </li>
-              <li>
-                <Link href="/woman" className={getLinkClass("/woman")}>
-                  WOMAN
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/accessories"
-                  className={getLinkClass("/accessories")}
-                >
-                  ACCESSORIES
-                </Link>
-              </li>
-            </ul>
+            <div className="hidden md:block">
+              <LinkMenu />
+            </div>
+          </div>
+          <div className="flex items-center gap-4 md:gap-8">
+            <SearchMenu />
+            <HiOutlineHeart className="cursor-pointer text-xl" />
+            <HiOutlineShoppingBag className="cursor-pointer text-xl" />
+            <HiOutlineUser className="cursor-pointer text-xl" />
           </div>
         </div>
       </header>
@@ -92,35 +155,7 @@ export default function Header() {
               </DrawerClose>
             </div>
             <div className="p-4">
-              <ul className="flex flex-col gap-4 font-semibold text-gray-700">
-                <li>
-                  <Link
-                    href="/man"
-                    className={getLinkClass("/man")}
-                    onClick={toggleDrawer}
-                  >
-                    MAN
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/woman"
-                    className={getLinkClass("/woman")}
-                    onClick={toggleDrawer}
-                  >
-                    WOMAN
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/accessories"
-                    className={getLinkClass("/accessories")}
-                    onClick={toggleDrawer}
-                  >
-                    ACCESSORIES
-                  </Link>
-                </li>
-              </ul>
+              <LinkMenu />
             </div>
           </DrawerContent>
         </Drawer>
