@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -35,37 +35,20 @@ export default function Header() {
   const pathname = usePathname();
   const isMobile = useIsMobile();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null); // Create a reference for the input element
 
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
-  const toggleSearch = () =>
-    setIsSearchOpen((prev) => {
-      if (isSearchOpen) {
-        inputRef.current?.blur();
-      }
-      return !prev;
-    });
-
-  const onOpenSearch = () => {
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }, 0); // Small delay to ensure the element is mounted
-  };
 
   const LinkMenu = () => {
     return (
       <ul className="flex flex-col items-start gap-4 font-semibold text-gray-700 md:flex-row md:items-center">
         <li>
-          <Link href="/man" className={getLinkClass("/man")}>
-            MAN
+          <Link href="/men" className={getLinkClass("/men")}>
+            MEN
           </Link>
         </li>
         <li>
-          <Link href="/woman" className={getLinkClass("/woman")}>
-            WOMAN
+          <Link href="/women" className={getLinkClass("/women")}>
+            WOMEN
           </Link>
         </li>
         <li>
@@ -78,12 +61,28 @@ export default function Header() {
   };
 
   const SearchMenu = () => {
+    const inputRef = useRef<HTMLInputElement>(null); // Create a reference for the input element
+
+    const handleOpen = () => {
+      // Focus input after the sheet is fully opened
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 0); // Small delay to ensure the element is mounted
+    };
+
+    const side = isMobile ? "top" : "right";
+
     return (
-      <Sheet onOpenChange={onOpenSearch}>
+      <Sheet onOpenChange={handleOpen}>
         <SheetTrigger asChild>
           <HiMagnifyingGlass className="cursor-pointer text-xl" />
         </SheetTrigger>
-        <SheetContent side={"top"} className="min-h-32 rounded-b-xl">
+        <SheetContent
+          side={side}
+          className={isMobile ? "rounded-b-xl" : "rounded-l-xl"}
+        >
           <SheetClose />
           <SheetHeader className="hidden">
             <SheetTitle>Eul Store Search</SheetTitle>
@@ -99,12 +98,12 @@ export default function Header() {
   // Function to determine the class for links
   const getLinkClass = (path: string): string =>
     pathname === path
-      ? "underline decoration-red decoration-2 underline-offset-4"
+      ? "underline decoration-redMain decoration-2 underline-offset-4"
       : "text-gray-500 hover:underline hover:decoration-gray-700 hover:decoration-2 hover:underline-offset-4";
 
   return (
     <>
-      <header className="sticky top-0">
+      <header className="sticky top-0 z-10">
         <div className="flex items-center justify-between bg-white px-4 py-4 md:px-8 md:py-6">
           <div className="flex items-center gap-2 md:gap-8">
             {/* Hamburger Menu */}

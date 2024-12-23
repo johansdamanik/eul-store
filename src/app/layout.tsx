@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import PromoHeader from "@/components/Home/PromoHeader";
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} relative flex min-h-screen flex-col font-[family-name:var(--font-geist-sans)] antialiased`}
       >
+        <PromoHeader />
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
