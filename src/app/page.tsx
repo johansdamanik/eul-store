@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+import TrendingCard from "@/components/Home/TrendingCard";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+
 export default function Home() {
   return (
     <div className="flex-grow">
@@ -10,7 +13,7 @@ export default function Home() {
               <p className="text-center text-xl tracking-[0.5rem] md:text-4xl">
                 WOMEN
               </p>
-              <button className="rounded-md border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
+              <button className="border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
                 EXPLORE
               </button>
             </div>
@@ -29,7 +32,7 @@ export default function Home() {
               <p className="text-center text-xl tracking-[0.5rem] md:text-4xl">
                 MEN
               </p>
-              <button className="rounded-md border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
+              <button className="border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
                 EXPLORE
               </button>
             </div>
@@ -48,7 +51,7 @@ export default function Home() {
               <p className="text-center text-sm tracking-[0.5rem] md:text-2xl">
                 ACCESSORIES
               </p>
-              <button className="rounded-md border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
+              <button className="border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
                 EXPLORE
               </button>
             </div>
@@ -61,6 +64,44 @@ export default function Home() {
             className="h-full w-full object-cover brightness-50 transition-all duration-300 group-hover:brightness-[0.85]"
           />
         </div>
+      </div>
+
+      {/* Trending Products */}
+      <div className="container my-8 p-4">
+        <div className="grid grid-cols-2 gap-2 lg:grid-cols-5">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <TrendingCard key={index} />
+          ))}
+          <div className="col-span-2 flex flex-row items-center justify-center gap-2 border p-4 lg:col-span-1 lg:flex-col">
+            <p>See More</p>
+            <span>
+              <HiOutlineArrowNarrowRight className="text-4xl" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative">
+        <div className="sticky top-10 -z-10 h-[400px]">
+          OKAS
+          <img
+            src="https://dummyimage.com/1200x400"
+            alt="dummy"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="bg-red-100 h-[80svh]">asd</div>
+        <div className="sticky top-10 -z-10 h-[400px]">
+          <img
+            src="https://dummyimage.com/1200x400"
+            alt="dummy"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="h-[80svh] bg-white">asd</div>
+      </div>
+      <div className="bg-red-200 h-[1000px]">
+        <div>hello</div>
       </div>
     </div>
   );

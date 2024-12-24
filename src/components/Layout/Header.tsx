@@ -79,10 +79,7 @@ export default function Header() {
         <SheetTrigger asChild>
           <HiMagnifyingGlass className="cursor-pointer text-xl" />
         </SheetTrigger>
-        <SheetContent
-          side={side}
-          className={isMobile ? "rounded-b-xl" : "rounded-l-xl"}
-        >
+        <SheetContent side={side}>
           <SheetClose />
           <SheetHeader className="hidden">
             <SheetTitle>Eul Store Search</SheetTitle>
@@ -103,7 +100,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-10">
+      <header className="sticky top-0 z-50">
         <div className="flex items-center justify-between bg-white px-4 py-4 md:px-8 md:py-6">
           <div className="flex items-center gap-2 md:gap-8">
             {/* Hamburger Menu */}
