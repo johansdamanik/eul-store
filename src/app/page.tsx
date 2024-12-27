@@ -82,7 +82,7 @@ export default function Home() {
       </div>
 
       <div className="relative">
-        <div className="sticky top-10 -z-10 h-[400px]">
+        <div className="h-[400px] bg-fixed">
           OKAS
           <img
             src="https://dummyimage.com/1200x400"
@@ -91,7 +91,7 @@ export default function Home() {
           />
         </div>
         <div className="bg-red-100 h-[80svh]">asd</div>
-        <div className="sticky top-10 -z-10 h-[400px]">
+        <div className="h-[400px] bg-fixed">
           <img
             src="https://dummyimage.com/1200x400"
             alt="dummy"
