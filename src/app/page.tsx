@@ -13,7 +13,7 @@ export default function Home() {
               <p className="text-center text-xl tracking-[0.5rem] md:text-4xl">
                 WOMEN
               </p>
-              <button className="border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
+              <button className="border border-white px-8 py-2 text-sm font-semibold transition-all active:scale-[0.98] group-hover:bg-white group-hover:text-black md:text-base">
                 EXPLORE
               </button>
             </div>
@@ -32,7 +32,7 @@ export default function Home() {
               <p className="text-center text-xl tracking-[0.5rem] md:text-4xl">
                 MEN
               </p>
-              <button className="border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
+              <button className="border border-white px-8 py-2 text-sm font-semibold transition-all active:scale-[0.98] group-hover:bg-white group-hover:text-black md:text-base">
                 EXPLORE
               </button>
             </div>
@@ -51,7 +51,7 @@ export default function Home() {
               <p className="text-center text-sm tracking-[0.5rem] md:text-2xl">
                 ACCESSORIES
               </p>
-              <button className="border border-white px-8 py-2 text-sm font-semibold group-hover:bg-white group-hover:text-black md:text-base">
+              <button className="border border-white px-8 py-2 text-sm font-semibold transition-all active:scale-[0.98] group-hover:bg-white group-hover:text-black md:text-base">
                 EXPLORE
               </button>
             </div>
@@ -82,7 +82,7 @@ export default function Home() {
       </div>
 
       <div className="relative">
-        <div className="h-[400px] bg-fixed">
+        <div className="sticky top-10 -z-10 h-[400px]">
           OKAS
           <img
             src="https://dummyimage.com/1200x400"
@@ -90,8 +90,8 @@ export default function Home() {
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="bg-red-100 h-[80svh]">asd</div>
-        <div className="h-[400px] bg-fixed">
+        <div className="h-[80svh] bg-red-100">asd</div>
+        <div className="sticky top-10 -z-10 h-[400px]">
           <img
             src="https://dummyimage.com/1200x400"
             alt="dummy"
@@ -100,7 +100,7 @@ export default function Home() {
         </div>
         <div className="h-[80svh] bg-white">asd</div>
       </div>
-      <div className="bg-red-200 h-[1000px]">
+      <div className="h-[1000px] bg-red-200">
         <div>hello</div>
       </div>
     </div>
