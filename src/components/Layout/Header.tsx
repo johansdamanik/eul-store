@@ -42,13 +42,13 @@ export default function Header() {
     return (
       <ul className="flex flex-col items-start gap-4 font-semibold text-gray-700 md:flex-row md:items-center">
         <li>
-          <Link href="/men" className={getLinkClass("/men")}>
-            MEN
+          <Link href="/women" className={getLinkClass("/women")}>
+            WOMEN
           </Link>
         </li>
         <li>
-          <Link href="/women" className={getLinkClass("/women")}>
-            WOMEN
+          <Link href="/men" className={getLinkClass("/men")}>
+            MEN
           </Link>
         </li>
         <li>
